@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="appcontent">
+        <div class="ui-g dashboard">
+            <div class="ui-g-12">
+                <div class="card card-w-title">
+                    <ui:include src="./page/header.xhtml" />
+                    <br/>
+                    <h:form id="appform">
+                        <p:dataTable widgetVar="tblTanah" var="tanah" value="#{dashboardMBean.list}" paginator="true"
+                                     rows="10"
+                                     rowKey="#{tanah.masterkey}" selectionMode="single"
+                                     selection="#{dashboardMBean.selectedTanah}"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     paginatorPosition="bottom" globalFilterFunction="#{dashboardMBean.globalFilterFunction}"
+                                     filteredValue="#{dashboardMBean.listFilter}" filterEvent="enter">
+                            <f:facet name="header">
+                                <p:outputPanel style="text-align: right">
+                                    <h:outputText value="Pencarian : "/>
+                                    <p:inputText id="globalFilter" onkeyup="PF('tblTanah').filter()" style="width:250px"
+                                                 placeholder="Masukkan Kata Pencarian"/>
+                                </p:outputPanel>
+                            </f:facet>
+                            <p:column headerText="Kode Lokasi Barang">
+                                <h:outputText value="#{tanah.kodelokasi}"/>
+                            </p:column>
+
+                            <p:column headerText="Kode Barang">
+                                <h:outputText value="#{tanah.kodebarang}"/>
+                            </p:column>
+
+                            <p:column headerText="Nama Barang">
+                                <h:outputText value="#{tanah.namabarang}"/>
+                            </p:column>
+
+                            <p:column headerText="Harga Perolehan">
+                                <div style="text-align: right">
+                                    <h:outputText value="#{tanah.hargaperolehan}">
+                                        <f:convertNumber type="currency" locale="id" currencySymbol=""
+                                                         groupingUsed="true"/>
+                                    </h:outputText>
+                                </div>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

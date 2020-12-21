@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <div class="topbar clearfix">
+        <div class="topbar-left">
+            <img src="#{resource['fairy-layout:images/logo.png']}" alt="logo pemda" class="topbar-logo" />
+        </div>
+
+        <div class="topbar-right">
+            <a id="menu-button" href="#">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <h:form id="topbar-items-form">
+                <h:commandLink id="right-sidebar-button" styleClass="fa fa-power-off" 
+                               style="color: #ffffff; font-size: 30px; float: right">
+                </h:commandLink>
+            </h:form>
+        </div>
+    </div>
+</ui:composition>

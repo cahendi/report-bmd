@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="theme-color" />
+        </f:facet>
+        <h:outputScript name="js/nanoscroller.js" library="fairy-layout" />
+        <h:outputScript name="js/layout.js" library="fairy-layout" />
+        <h:outputStylesheet name="css/nanoscroller.css" library="fairy-layout" />
+        <h:outputStylesheet name="css/layout-blue-v4.css" library="fairy-layout" />
+        <h:outputStylesheet name="css/animate.css" library="fairy-layout" />
+        
+        <link href="#{resource['fairy-layout:images/kemendagricon.ico']}" rel="icon" type="image/png"/>
+        <title>SIAP BMD Kemendagri</title>
+    </h:head>
+    <h:body>
+        <div class="layout-wrapper menu-layout-static menu-layout-horizontal">
+            <ui:include src="./header.xhtml" />
+            <ui:include src="./menu.xhtml" />
+            <div class="layout-main">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <div class="card">
+                            <ui:insert name="appcontent" />
+                            <p:ajaxStatus onstart="PF('statusDialog').show()" 
+                                          onsuccess="PF('statusDialog').hide()">
+                            </p:ajaxStatus>
+                            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                <p:graphicImage alt="loader" url="#{resource['fairy-layout:images/ajax_loader_orange_32.gif']}" />
+                            </p:dialog>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ui:include src="./footer.xhtml" />
+        </div>
+    </h:body>
+</html>
